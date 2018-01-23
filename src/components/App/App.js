@@ -37,11 +37,21 @@ class App extends Component {
           </section>
           }
         </main>
-        <footer className='center'>
-          <a href='http://rebelscum.com/'>
-            <img src='/assets/images/rebelscum.gif' border='0' width='100' height='35' alt='Rebelscum credit' />
-          </a>
-        </footer>
+
+        <section className="container-form create-miniature row">
+          <header>
+            <h2 className="amber-text text-lighten-1 center">Add New Miniature</h2>
+          </header>
+          <form action="/" method="post" className="col s6 offset-s3">
+            <label>Name
+              <input type="text" name="newMiniature[name]" />
+            </label>
+            <label>Image Url
+              <input type="text" name="newMiniature[imageUrl]" />
+            </label>
+            <button type="submit" className="waves-effect waves-light btn-large btn-flat">Create</button>
+          </form>
+        </section>
       </div>
     )
   }
