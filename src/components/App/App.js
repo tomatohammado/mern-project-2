@@ -24,13 +24,17 @@ class App extends Component {
     e.preventDefault()
   }
 
-  // hmmm, an arrow function _does_ work here...
-  componentDidMount () {
+  getAllMiniatures = () => {
     getMiniatures.then(res => {
       this.setState(prevState => ({
         miniatures: res.data.slice()
       }))
     })
+  }
+
+  // hmmm, an arrow function _does_ work here...
+  componentDidMount () {
+    this.getAllMiniatures()
   }
 
   render () {
