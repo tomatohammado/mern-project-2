@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import './App.css'
 import Miniature from '../Miniature/Miniature.js'
+import Input from '../Input/Input.js'
+import Button from '../Button/Button.js'
+
 import { getMiniatures, postMiniature } from '../../Util.js'
 
 class App extends Component {
@@ -72,15 +75,19 @@ class App extends Component {
             <h2 className="amber-text text-lighten-1 center">Add New Miniature</h2>
           </header>
           <form action="/" method="post" className="col s6 offset-s3">
-            <div>
+            {/* <div>
               <label>Name</label>
               <input type="text" name="name" onChange={this.handleCreateInput} />
-            </div>
-            <div>
+            </div> */}
+            <Input labelName='Name' name='name' onChange={this.handleCreateInput}/>
+            {/* <div>
               <label>Image Url</label>
                 <input type="text" name="imageUrl" onChange={this.handleCreateInput} />
-            </div>
-            <button type="submit" className="waves-effect waves-light btn-large btn-flat">Create</button>
+            </div> */}
+            <Input labelName='Image Url' name='imageUrl' onChange={this.handleCreateInput}/>
+
+            {/* <button type="submit" className="waves-effect waves-light btn-large btn-flat">Create</button> */}
+            <Button type='submit' classes='waves-effect waves-light btn-large btn-flat' content='Create' />
           </form>
         </section>
       </div>
