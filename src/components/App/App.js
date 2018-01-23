@@ -72,12 +72,14 @@ class App extends Component {
             <h2 className="amber-text text-lighten-1 center">Add New Miniature</h2>
           </header>
           <form action="/" method="post" className="col s6 offset-s3">
-            <label>Name
+            <div>
+              <label>Name</label>
               <input type="text" name="name" onChange={this.handleCreateInput} />
-            </label>
-            <label>Image Url
-              <input type="text" name="imageUrl" onChange={this.handleCreateInput} />
-            </label>
+            </div>
+            <div>
+              <label>Image Url</label>
+                <input type="text" name="imageUrl" onChange={this.handleCreateInput} />
+            </div>
             <button type="submit" className="waves-effect waves-light btn-large btn-flat">Create</button>
           </form>
         </section>
