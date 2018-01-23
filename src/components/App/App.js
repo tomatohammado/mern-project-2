@@ -8,6 +8,7 @@ class App extends Component {
     miniatures: [],
   }
 
+  // hmmm, an arrow function _does_ work here...
   componentDidMount () {
     getAll.then(res => {
       this.setState(prevState => ({
