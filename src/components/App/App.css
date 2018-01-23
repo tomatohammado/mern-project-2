@@ -8,7 +8,7 @@
 
 body {
   background-color: #002F4F;
-  background-image: url('~/assets/images/asfalt-light.png')
+  background-image: url('./assets/images/asfalt-light.png')
 }
 
 h1 {
