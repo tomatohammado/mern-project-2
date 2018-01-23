@@ -1,55 +1,27 @@
 import React, { Component } from 'react'
 import './App.css'
 import Miniature from '../Miniature/Miniature.js'
-// import { getAll } from '../../Util.js'
-
-let testData = [
-  {
-    "name": "Storm Commando",
-    "imageUrl": "swminiAE_33card2.jpg"
-  },
-  {
-    "name": "Darth Bane",
-    "imageUrl": "SWminiCOTF10banecardfr.jpg"
-  },
-  {
-    "name": "Logray, Ewok Shaman",
-    "imageUrl": "swminiIE-34card2.jpg"
-  }
-]
+import { getAll } from '../../Util.js'
 
 class App extends Component {
   state = {
     miniatures: [],
-    test: false
   }
 
   componentDidMount () {
-    // getAll.then(res => {
-    //   console.log(res.data)
-    //   this.setState(prevState => ({
-    //     miniatures: res.data.slice(),
-    //     test: true
-    //   }), _ => console.log(this.state.test))
-    // })
-
-    this.setState(prevState => ({
-      miniatures: testData.slice(),
-      test: true
-    }), _ => console.log(this.state.miniatures))
+    getAll.then(res => {
+      this.setState(prevState => ({
+        miniatures: res.data.slice()
+      }))
+    })
   }
 
   render () {
-    let item
-    let miniatureComponent
+    let allMiniatures
     if (this.state.miniatures.length > 0) {
-    //   allMiniatures = this.state.miniatures.map((item, index) => (
-    //     <Miniature key={index} name={item.name} imageUrl={item.imageUrl} />
-    // ))
-    item = this.state.miniatures[0]
-    console.log(item)
-    miniatureComponent = <Miniature name={item.name} imageUrl={item.imageUrl} />
-    console.log(miniatureComponent)
+      allMiniatures = this.state.miniatures.map((item, index) => (
+        <Miniature key={index} name={item.name} imageUrl={item.imageUrl} id={item._id}/>
+    ))
     }
     return (
       <div className='App'>
@@ -59,8 +31,8 @@ class App extends Component {
               <h1 className='center'>Star Wars Miniatures App</h1>
             </a>
           </header>
-          {item && <section className='container-miniatures row'>
-            {miniatureComponent}
+          {allMiniatures && <section className='container-miniatures row'>
+            {allMiniatures}
           </section>
           }
         </main>
