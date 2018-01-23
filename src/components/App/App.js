@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './App.css'
 import Miniature from '../Miniature/Miniature.js'
-import { getMiniatures } from '../../Util.js'
+import { getMiniatures, postMiniature } from '../../Util.js'
 
 class App extends Component {
   state = {
@@ -10,22 +10,31 @@ class App extends Component {
     imageUrl: ''
   }
 
+  getAllMiniatures = () => {
+    getMiniatures.then(res => {
+      this.setState(prevState => ({
+        miniatures: res.data.slice()
+      }))
+    })
+  }
+
   handleCreateInput = (e) => {
     let key = e.target.name
     let value = e.target.value
 
     this.setState(prevState => ({
       [key]: value
-    }),_ => console.log(this.state))
+    }))
 
   }
 
   handleCreateMiniature = (e) => {
     e.preventDefault()
-  }
-
-  getAllMiniatures = () => {
-    getMiniatures.then(res => {
+    postMiniature({
+      name: this.state.name,
+      imageUrl: this.state.imageUrl
+    })
+    .then(res => {
       this.setState(prevState => ({
         miniatures: res.data.slice()
       }))
