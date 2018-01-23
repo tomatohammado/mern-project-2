@@ -1,16 +1,32 @@
 import React, { Component } from 'react'
 import './App.css'
 import Miniature from '../Miniature/Miniature.js'
-import { getAll } from '../../Util.js'
+import { getMiniatures } from '../../Util.js'
 
 class App extends Component {
   state = {
     miniatures: [],
+    name: '',
+    imageUrl: ''
+  }
+
+  handleCreateInput = (e) => {
+    let key = e.target.name
+    let value = e.target.value
+
+    this.setState(prevState => ({
+      [key]: value
+    }),_ => console.log(this.state))
+
+  }
+
+  handleCreateMiniature = (e) => {
+    e.preventDefault()
   }
 
   // hmmm, an arrow function _does_ work here...
   componentDidMount () {
-    getAll.then(res => {
+    getMiniatures.then(res => {
       this.setState(prevState => ({
         miniatures: res.data.slice()
       }))
@@ -38,16 +54,16 @@ class App extends Component {
           }
         </main>
 
-        <section className="container-form create-miniature row">
+        <section className="container-form create-miniature row" onSubmit={this.handleCreateMiniature}>
           <header>
             <h2 className="amber-text text-lighten-1 center">Add New Miniature</h2>
           </header>
           <form action="/" method="post" className="col s6 offset-s3">
             <label>Name
-              <input type="text" name="newMiniature[name]" />
+              <input type="text" name="name" onChange={this.handleCreateInput} />
             </label>
             <label>Image Url
-              <input type="text" name="newMiniature[imageUrl]" />
+              <input type="text" name="imageUrl" onChange={this.handleCreateInput} />
             </label>
             <button type="submit" className="waves-effect waves-light btn-large btn-flat">Create</button>
           </form>
