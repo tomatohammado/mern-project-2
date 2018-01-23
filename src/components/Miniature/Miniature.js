@@ -2,7 +2,7 @@ import React from 'react'
 // import PropTypes from 'prop-types'
 
 const Miniature = ({name, imageUrl, id}) => {
-  let imgSrc = `/assets/images/${imageUrl}`
+  let imgSrc = `./assets/images/${imageUrl}`
   let linkHref = `/miniatures/${id}`
   return (
     <div className='col s6'>
